@@ -1,37 +1,77 @@
-//let linhadasPalavras = document.getElementById("linhadasPalavras"); //colocar pra carregar no DOM
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-
 let palavras = ['ESTARRECEDOR', 'ATARRACADO', 'TANGENCIADO'];
 let palavradaSessao =  palavras[getRandomInt(3)]
 let quantidadeLetras = palavradaSessao.split(""); //separa as letras
-console.log(palavradaSessao, palavradaSessao.length, "letras"); //length mostra a quantidade de letas
-//console.log(quantidadeLetras[1]);
+//console.log(palavradaSessao, palavradaSessao.length, "letras"); //length mostra a quantidade de letas
 let pressionouTecla = false;
 let contadorFor = 0;
+let letraDigitada; let arrayLetraDigitada = []; //letra digitada pelo jogador durante a partida e array que armazeza a palavra inteira
 
 addEventListener("keydown", (event) => { 
     pressionouTecla = true;
-    
-  for (0; contadorFor < palavradaSessao.length && pressionouTecla == true; contadorFor++){
-      //console.log(contadorFor);
-      //console.log(auxHtml);
-      auxHtml[contadorFor] = `<div id="box1"><p>${event.key}</p></div>`;
+  for (0; contadorFor < palavradaSessao.length && pressionouTecla == true && event.key != "Backspace"; contadorFor++){
+      
+      letraDigitada = event.key;
+      auxHtml[contadorFor] = `<div id="box1"><p>${letraDigitada}</p></div>`;
       ReiniciarLetreiro();
-     //addEventListener("keydown", (event) => { 
-    
-      //})
-      //console.log(event.key);
-    //console.log(listarPalavras(palavradaSessao.length));
-     pressionouTecla = false;
+      arrayLetraDigitada[contadorFor] = letraDigitada; //testar
+      console.log(arrayLetraDigitada.join(''));//palavra completa
+      pressionouTecla = false;
+      
+      if(palavradaSessao == arrayLetraDigitada.join('').toUpperCase()){
+console.log(palavradaSessao);
+console.log(arrayLetraDigitada);
+document.body.innerHTML +=  '<p id="textoVitoria">VOCÊ VENCEU</p>' //quando vencer proibir a digitacao no teclado até a proxima rodada
+            }
+   }
+
+   if(event.key == "Backspace" && contadorFor >= 1){ //funcao de apagar
+    contadorFor = contadorFor - 1;
+    auxHtml[contadorFor] = `<div id="box1"><p></p></div>`;
+      ReiniciarLetreiro();
+    arrayLetraDigitada[contadorFor] = arrayLetraDigitada.pop();
+    console.log(contadorFor);
    }
 
 });
 
+let numeroLista = -1;
+let auxHtml = [];
+let adicionar = true;
+let publicIdButton;
+        
+        function listarPalavras(lista) { 
+           for (let i = 0; i < lista; i++){
+           if(adicionar == true){
+            numeroLista++;
+            auxHtml[numeroLista] =
+                `<div id="box1"><p></p></div>`;
+            }else{
+            auxHtml[publicIdButton] = '2';
+            console.log('p');
+            }
+           }
+           return auxHtml;
+        }
+         let listadasPalavras = [];
+        //window.onload = function() {
+            //evento.preventDefault();
+            //let planetaCadastrado = new Palavra(nome, quantidadeLetras, significado);
+            adicionar = true;
+            let arraywordBox = listarPalavras(palavradaSessao.length);//ou +=
+            ReiniciarLetreiro();
+            function ReiniciarLetreiro(){
+            document.getElementById("linhadasPalavras").innerHTML = arraywordBox.join('');
+            }
 
-class Planeta {
+            
+        //LIMPAR OS ARRAYS DEPOIS QUANDO O JOGADOR VENCER O JOGO
+
+
+        class Planeta {
             constructor(nome, classificacao, tamanho, massa, distancia){
             this.nome = nome; //usar o this antes de propriedade
             this.classificacao = classificacao;
@@ -40,60 +80,3 @@ class Planeta {
             this.distancia = distancia;
             }
         }
-
-let numeroLista = -1;
-let auxHtml = [];
-let adicionar = true;
-let publicIdButton;
-        //let quantidadeLetras = document.getElementById('qtdLetras').value;
-        function listarPalavras(lista) { 
-           for (let i = 0; i < lista; i++){
-           if(adicionar == true){
-            numeroLista++;
-            //numeroLista = lista;
-            //console.log(lista,numeroLista);
-               auxHtml[numeroLista] =
-                `<div id="box1"><p></p></div>`;
-                //numeroLista = 0 //zera para receber novo valor do input lista e não acrescentar a mais
-    }
-    else{
-        auxHtml[publicIdButton] = '2';
-        console.log('p');
-        
-    }
-           }
-           return auxHtml;
-        }
-         let listadasPalavras = [];
-        //window.onload = function() {
-              //document.getElementById("linhadasPalavras").innerHTML = listarPalavras(4);
-
-            //document.getElementById('formulario').onsubmit = function(evento) {
-            //evento.preventDefault();
-            //let quantidadeLetras = document.getElementById('qtdLetras').value;
-            
-            //let planetaCadastrado = new Palavra(nome, quantidadeLetras, significado);
-            //listadasPalavras.push(planetaCadastrado);
-            //numeroLista++;////////////
-            
-            adicionar = true;
-            let arraywordBox = listarPalavras(palavradaSessao.length);//ou +=
-            
-            ReiniciarLetreiro();
-            function ReiniciarLetreiro(){
-            document.getElementById("linhadasPalavras").innerHTML = arraywordBox.join('');
-            }
-
-
-            //console.log(listarPalavras(0));
-            console.log(palavradaSessao.length);
-            //console.log(arraywordBox);
-            //document.getElementById('nome').value = '';
-            //document.getElementById('tamanho').value = '';
-            //document.getElementById('massa').value = '';
-            //document.getElementById('distancia').value = '';
-            //}
-            //       } do botao     
-        //}//ON LOAD
-        
-        //LIMPAR OS ARRAYS DEPOIS QUANDO O JOGADOR VENCER O JOGO
