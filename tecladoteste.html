@@ -1,0 +1,221 @@
+<html>
+<head>
+<style>.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 30px 0;
+}
+@keyframes lights {
+  0% {
+    color: red;
+    box-shadow: 0 5px 15px red;
+  }
+  25% {
+    color: goldenrod;
+    box-shadow: 0 5px 15px goldenrod;
+  }
+  50% {
+    color: blue;
+    box-shadow: 0 5px 15px blue;
+  }
+  75% {
+    color: rgb(35, 201, 201);
+    box-shadow: 0 5px 15px rgb(35, 201, 201);
+  }
+  100% {
+    color: red;
+    box-shadow: 0 5px 15px red;
+  }
+}
+.heading{
+  text-align:center;
+  font-weight:100;
+}
+.keyboard__body {
+  margin: 0 auto;
+  width: 1000px;
+  background-color: #40514E;
+  border-radius: 15px;
+}
+.key {
+  font-size:18px;
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  border: none;
+  background-color: #F3F6F6;
+}
+.key:active {
+  transform: translateY(2px);
+  box-shadow: 0 0px 0px transparent;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.spaceBar {
+  width: 500px;
+}
+.spaceBar:active {
+  transform: translateY(2px);
+}
+.text {
+  margin: 0 auto;
+  width: 500px;
+  display: block;
+  margin-bottom: 50px;
+  border: 2px solid lime;
+}
+.text:focus {
+  outline: none;
+}
+.lightOn {
+  animation: lights 8s linear infinite;
+}</style>
+</head>
+
+<body>
+<div class="wrapper">
+      <h1 class="heading">Simple Virtual Javascript Keyboard</h1>
+      <textarea
+        name="textarea"
+        id=""
+        cols="30"
+        rows="5"
+        class="text"
+        readonly
+      ></textarea>
+      <div class="keyboard__body">
+        <div class="container">
+          <div class="row">
+            <button class="key content">1</button
+            ><button class="key content">2</button
+            ><button class="key content">3</button
+            ><button class="key content">4</button
+            ><button class="key content">5</button
+            ><button class="key content">6</button
+            ><button class="key content">7</button
+            ><button class="key content">8</button
+            ><button class="key content">9</button
+            ><button class="key content">0</button
+            ><button class="key backSpace">&larr;</button>
+          </div>
+          <div class="row">
+            <button class="key alpha content">q</button
+            ><button class="key alpha content">w</button
+            ><button class="key alpha content">e</button
+            ><button class="key alpha content">r</button
+            ><button class="key alpha content">t</button
+            ><button class="key alpha content">y</button
+            ><button class="key alpha content">u</button
+            ><button class="key alpha content">i</button
+            ><button class="key alpha content">o</button
+            ><button class="key alpha content">p</button>
+          </div>
+          <div class="row">
+            <button class="key alpha content">a</button
+            ><button class="key alpha content">s</button
+            ><button class="key alpha content">d</button
+            ><button class="key alpha content">f</button
+            ><button class="key alpha content">g</button
+            ><button class="key alpha content">h</button
+            ><button class="key alpha content">j</button
+            ><button class="key alpha content">k</button
+            ><button class="key alpha content">l</button>
+          </div>
+          <div class="row">
+            <button class="key alpha content">z</button
+            ><button class="key alpha content">x</button
+            ><button class="key alpha content">c</button
+            ><button class="key alpha content">v</button
+            ><button class="key alpha content">b</button
+            ><button class="key alpha content">n</button
+            ><button class="key alpha content">m</button>
+          </div>
+          <div class="row">
+            <button class="key caps">Caps</button
+            ><button class="key spaceBar"></button
+            ><button class="key light">
+              <ion-icon name="sunny-outline" class="light"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script>'use strict';
+const container = document.querySelector('.container');
+const textarea = document.querySelector('.text');
+const alphabet = document.querySelectorAll('.alpha');
+const key = document.querySelectorAll('.key');
+let checkCaps = false;
+let checkLights = false;
+//CAPSLOCK
+const caps = function () {
+  if (checkCaps == false) {
+    for (let i = 0; i < alphabet.length; i++) {
+      let getAlpha = alphabet[i].textContent;
+      const up = getAlpha.toUpperCase();
+      alphabet[i].textContent = up;
+    }
+    checkCaps = true;
+  } else {
+    for (let i = 0; i < alphabet.length; i++) {
+      let getAlpha = alphabet[i].textContent;
+      const low = getAlpha.toLowerCase();
+      alphabet[i].textContent = low;
+    }
+    checkCaps = false;
+  }
+};
+//Lights
+const blink = function () {
+  if (checkLights == false) {
+    key.forEach((key) => key.classList.add('lightOn'));
+    checkLights = true;
+  } else {
+    key.forEach((key) => key.classList.remove('lightOn'));
+    checkLights = false;
+  }
+};
+//Event listener
+container.addEventListener('click', function (e) {
+  if (e.target.classList.contains('key')) {
+    if (e.target.classList.contains('spaceBar')) {
+      textarea.textContent += ' ';
+    }
+    if (e.target.classList.contains('caps')) {
+      caps();
+    }
+    if (e.target.classList.contains('content')) {
+      const getContent = e.target.textContent;
+      textarea.textContent += getContent;
+    }
+    if (e.target.classList.contains('backSpace')) {
+      textarea.textContent = textarea.textContent.substring(
+        0,
+        textarea.textContent.length - 1
+      );
+    }
+    if (e.target.classList.contains('light')) {
+      blink();
+    }
+  } else {
+    return;
+  }
+});</script>
+</body>
+    </html>
