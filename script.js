@@ -1,3 +1,6 @@
+window.onload = function() {
+
+//FUNCAO DO ARQUIVO AQUI EM BAIXO
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -14,7 +17,7 @@ addEventListener("keydown", (event) => {
     pressionouTecla = true;
   for (0; contadorFor < palavradaSessao.length && pressionouTecla == true && event.key != "Backspace"; contadorFor++){
       
-      letraDigitada = event.key;
+      letraDigitada = getContent;//event.key; //Aqui detecta a tecla
       auxHtml[contadorFor] = `<div id="box1"><p>${letraDigitada}</p></div>`;
       ReiniciarLetreiro();
       arrayLetraDigitada[contadorFor] = letraDigitada; //testar
@@ -80,3 +83,80 @@ let publicIdButton;
             this.distancia = distancia;
             }
         }
+
+
+
+
+
+
+
+'use strict';
+const container = document.querySelector('.container');
+const textarea = document.querySelector('.text');
+const alphabet = document.querySelectorAll('.alpha');
+const key = document.querySelectorAll('.key');
+let checkCaps = false;
+let checkLights = false;
+//CAPSLOCK
+const caps = function () {
+  if (checkCaps == false) {
+    for (let i = 0; i < alphabet.length; i++) {
+      let getAlpha = alphabet[i].textContent;
+      const up = getAlpha.toUpperCase();
+      alphabet[i].textContent = up;
+    }
+    checkCaps = true;
+  } else {
+    for (let i = 0; i < alphabet.length; i++) {
+      let getAlpha = alphabet[i].textContent;
+      const low = getAlpha.toLowerCase();
+      alphabet[i].textContent = low;
+    }
+    checkCaps = false;
+  }
+};
+//Lights
+const blink = function () {
+  if (checkLights == false) {
+    key.forEach((key) => key.classList.add('lightOn'));
+    checkLights = true;
+  } else {
+    key.forEach((key) => key.classList.remove('lightOn'));
+    checkLights = false;
+  }
+};
+//Event listener
+//const getContent = e.target.textContent;
+let getContent;
+console.log(getContent);
+container.addEventListener('click', function (e) {
+  if (e.target.classList.contains('key')) {
+    if (e.target.classList.contains('spaceBar')) {
+      textarea.textContent += ' ';
+    }
+    if (e.target.classList.contains('caps')) {
+      caps();
+    }
+    if (e.target.classList.contains('content')) {
+      getContent = e.target.textContent;
+      textarea.textContent += getContent;
+      //console.log(getContent);
+    }
+    if (e.target.classList.contains('backSpace')) {
+      textarea.textContent = textarea.textContent.substring(
+        0,
+        textarea.textContent.length - 1
+      );
+    }
+    if (e.target.classList.contains('light')) {
+      blink();
+    }
+  } else {
+    return;
+  }
+});
+
+
+
+
+}

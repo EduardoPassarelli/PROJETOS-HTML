@@ -45,6 +45,7 @@ container.addEventListener('click', function (e) {
     if (e.target.classList.contains('content')) {
       const getContent = e.target.textContent;
       textarea.textContent += getContent;
+      console.log(getContent);
     }
     if (e.target.classList.contains('backSpace')) {
       textarea.textContent = textarea.textContent.substring(
