@@ -1,3 +1,5 @@
+let teste2 = document.querySelector('.wrapper').clientWidth;
+console.log(teste2);
 window.onload = function() {
 
   //FUNCAO DO ARQUIVO AQUI EM BAIXO

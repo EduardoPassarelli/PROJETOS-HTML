@@ -1,3 +1,4 @@
+ 
   .wrapper{ all: unset;
     display: flex;
     align-items: center;
@@ -93,4 +94,10 @@ margin-right: auto;
 }
 .lightOn {
   animation: lights 8s linear infinite;
+}
+
+ @media screen and (max-width: 900px) {
+  .wrapper{
+    width: 780px;
+  }  
 }
