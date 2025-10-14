@@ -1,6 +1,12 @@
-@media  screen and(max-width:600px) {
-    #gamescreen{background-color: aqua;}
+@media only screen and (max-width: 600px) {
+
 }
+/*Se [largura do dispositivo] for menor ou igual a 600px, então faça {...}.”*/
+
+@media only screen and (min-width: 600px) {
+#gamescreen{background-color: aqua;}
+
+} /*Se [largura do dispositivo] for maior ou igual a 600px, então faça {...}”*/
 
 body{margin: 0px;
 position: relative;
@@ -27,13 +33,23 @@ background-image: linear-gradient(to bottom, rgba(73, 63, 63, 0.548) 20%,rgba(17
     flex-direction: row;
     position: absolute;
     top: 223px;
-    line-height: 50px;
+    line-height: 44px;
     text-align: center;
     font-weight: bold;
     font-size: 29px;
     color: aliceblue;
 }
+#box1{
+background-color: rgb(16, 44, 44);
+ width: 50px;
+ height: 50px;
+ border: 0.125em solid rgb(0, 60, 255);
+ border-radius: 20%;
 
+margin-left: 8px;
+margin-right: 8px;
+
+}
 #levelscore{
     border-radius: 10px;
     background-color: red;
@@ -85,17 +101,7 @@ top: 12px;
     left: 23px;
     top: 423px;
 }
-#box1{
-background-color: rgb(16, 44, 44);
- width: 50px;
- height: 50px;
- border: 0.125em solid rgb(0, 60, 255);
- border-radius: 20%;
 
-margin-left: 8px;
-margin-right: 8px;
-
-}
 #box1 p{
 
    
@@ -130,4 +136,111 @@ width: 50px;
     align-content: center;
     color: green;
     top: 633px;
+}
+
+
+ @media screen and (max-width: 900px) {
+  
+#box1{
+
+ width: 45px;
+ height: 45px;
+
+}
+#linhadasPalavras{
+    top: 223px;
+    line-height: 37px;
+    font-size: 29px;
+    
+}
+#dicas{
+width: 642px;
+}
+#levelscore{
+    
+    margin-right:53px;
+    top: 23px;
+}
+}
+
+@media screen and (max-width: 800px) {
+
+#box1{
+
+ width: 35px;
+ height: 35px;
+}
+#linhadasPalavras{
+    top: 223px;
+    line-height: 27px;
+    font-size: 29px;
+    
+}
+#dicas{
+width: 542px;
+top: 97px;
+
+}
+#levelscore{
+    
+    margin-right:183px;
+    top: 23px;
+}
+}
+
+@media screen and (max-width: 670px) {
+
+#box1{
+
+ width: 25px;
+ height: 25px;
+ margin-left: 4px;
+margin-right: 4px;
+}
+#linhadasPalavras{
+    top: 223px;
+    line-height: 18.9px;
+    font-size: 20px;
+    
+}
+#dicas{
+width: 402px;
+top: 97px;
+}
+#levelscore{
+    
+    margin-right:270px;
+    top: 23px;
+}
+}
+
+@media screen and (max-width: 480px) {
+#box1{
+
+ width: 20px;
+ height: 20px;
+ margin-left: 4px;
+margin-right: 4px;
+}
+#linhadasPalavras{
+    top: 223px;
+    line-height: 14.9px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+#dicas{
+width: 322px;
+top: 97px;
+}
+#levelscore{
+    border-radius: 10px;
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    margin-right:399px;
+    top: 23px;
+}
 }

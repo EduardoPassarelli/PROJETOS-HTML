@@ -7,7 +7,8 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-let palavras = ['ESTARRECEDOR', 'ATARRACADO', 'TANGENCIADO'];
+//let palavras = ['ESTARRECEDOR', 'ATARRACADO', 'TANGENCIADO'];
+let palavras = JSON.parse()
 let palavradaSessao =  palavras[getRandomInt(3)] //aumentar conforme a quantidade de palavras no array e depois mudar o array pra json
 let quantidadeLetras = palavradaSessao.split(""); //separa as letras
 //console.log(palavradaSessao, palavradaSessao.length, "letras"); //length mostra a quantidade de letas
