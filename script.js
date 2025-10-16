@@ -1,5 +1,27 @@
+//AREA QUE CARREGA O JSON DO SITE
+function retornarPalavrasJson(obj){
+  return obj
+}
+
+async function populate() {
+  const requestURL = './palavras.json';
+  const request = new Request(requestURL);
+
+  const response = await fetch(request);
+  const palavrasJson = await response.json();
+  //console.log(palavrasJson);
+  retornarPalavrasJson(palavrasJson);
+  //return palavrasJson;
+}
+populate();
+
+
+
+console.log("TESTE AQUI" + retornarPalavrasJson())
+console.log(retornarPalavrasJson());
+
 let teste2 = document.querySelector('.wrapper').clientWidth;
-console.log(teste2);
+//console.log(teste2);
 window.onload = function() {
 
   //FUNCAO DO ARQUIVO AQUI EM BAIXO
@@ -7,8 +29,8 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-//let palavras = ['ESTARRECEDOR', 'ATARRACADO', 'TANGENCIADO'];
-let palavras = JSON.parse()
+let palavras = ['ESTARRECEDOR', 'ATARRACADO', 'TANGENCIADO'];
+//let palavras = 
 let palavradaSessao =  palavras[getRandomInt(3)] //aumentar conforme a quantidade de palavras no array e depois mudar o array pra json
 let quantidadeLetras = palavradaSessao.split(""); //separa as letras
 //console.log(palavradaSessao, palavradaSessao.length, "letras"); //length mostra a quantidade de letas
@@ -57,7 +79,7 @@ const blink = function () {
 //const getContent = e.target.textContent;
 caps();
 let getContent;
-console.log(getContent);
+//console.log(getContent);
 container.addEventListener('click', function (e) {
   if (e.target.classList.contains('key')) {
     // if (e.target.classList.contains('spaceBar')) {
