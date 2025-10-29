@@ -8,18 +8,22 @@ async function populate() {
   const request = new Request(requestURL);
 
   const response = await fetch(request);
-  const palavrasJson = await response.json();
+  let palavrasJson = await response.json();
   //console.log(palavrasJson);
-  retornarPalavrasJson(palavrasJson);
-  //return palavrasJson;
+  //retornarPalavrasJson(palavrasJson);
+
+  return palavrasJson;
 }
 populate();
 
-
-
-console.log("TESTE AQUI" + retornarPalavrasJson())
-console.log(retornarPalavrasJson());
-
+let res;
+(async function main() { 
+  res = await populate(); 
+  console.log(res); // prints 42 
+})();
+//console.log(Promise.resolve(populate()));
+//console.log(retornarPalavrasJson());
+console.log(res);
 let teste2 = document.querySelector('.wrapper').clientWidth;
 //console.log(teste2);
 window.onload = function() {
